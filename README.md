@@ -6,7 +6,7 @@ $ npm -v
 ```
 
 Si da error, reinician el pc :).
-Luego de tener npm, instalan yarn:
+Después de tener npm, instalan yarn:
 ```bash
 $ npm i -g yarn
 ```
