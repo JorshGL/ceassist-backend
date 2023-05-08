@@ -1,7 +1,17 @@
+## How to start the project
+Si no tienen Nodejs instalado, instalan aquí[https://nodejs.org/en] la versión lts.
+Verifican en la terminal la versión de npm:
+```bash
+$ npm -v
+```
 
-## Description
+Si da error, reinician el pc :).
+Luego de tener npm, instalan yarn:
+```bash
+$ npm i -g yarn
+```
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Luego pueden abrir la carpeta del proyecto en una terminal y seguir los pasos
 
 ## Installation
 
