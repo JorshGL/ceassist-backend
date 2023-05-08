@@ -1,5 +1,5 @@
 ## How to start the project
-Si no tienen Nodejs instalado, instalan [aquí][https://nodejs.org/en] la versión lts.
+Si no tienen Nodejs instalado, instalan [aquí](https://nodejs.org/en) la versión lts.
 Verifican en la terminal la versión de npm:
 ```bash
 $ npm -v
