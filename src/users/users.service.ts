@@ -30,6 +30,13 @@ export class UsersService {
     });
   }
 
+  async findOneById(id: string): Promise<User> {
+    return await this._userRepository.findOne({
+      relations: ['role'],
+      where: { id },
+    });
+  }
+
   async findOneByFirebaseUid(firebaseUid: string): Promise<User> {
     return await this._userRepository.findOne({
       relations: ['role'],

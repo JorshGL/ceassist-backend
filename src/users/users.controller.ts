@@ -14,6 +14,21 @@ export class UsersController {
     private readonly _globalsService: GlobalsService,
   ) {}
 
+  @Get('user/:userId')
+  async findOneById(@Query('userId') userId: string) {
+    try {
+      const user = await this._usersService.findOneById(userId);
+      return {
+        data: user,
+        message: 'User retrieved successfully',
+        state: responseState.success,
+        success: true,
+      }
+    } catch (error) {
+      return await this._globalsService.handleError(error);
+    }
+  }
+
   @Post('assign-role')
   async assignRole(@Body() { userId, roleId }: AssignRoleDTO) {
     try {
