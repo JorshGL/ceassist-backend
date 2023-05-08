@@ -51,6 +51,12 @@ export class UsersService {
   ): Promise<User[]> {
     const { course, name } = instructorsFiltersDto;
     return await this._userRepository.find({
+      select: {
+        id: true,
+        name: true,
+        schedule: true,
+        courses: true        
+      },
       relations: ['courses'],
       where: {
         role: { name: userRoles.instructor },
