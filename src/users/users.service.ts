@@ -32,7 +32,7 @@ export class UsersService {
 
   async findOneById(id: string): Promise<User> {
     return await this._userRepository.findOne({
-      relations: ['role'],
+      relations: ['role', 'courses'],
       where: { id },
     });
   }
@@ -62,7 +62,8 @@ export class UsersService {
         id: true,
         name: true,
         schedule: true,
-        courses: true        
+        courses: true,
+        email: true,
       },
       relations: ['courses'],
       where: {

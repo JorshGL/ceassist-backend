@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { GlobalsService } from 'src/globals/globals.service';
 import { AssignRoleDTO } from './dto/assign-role.dto';
@@ -15,7 +15,7 @@ export class UsersController {
   ) {}
 
   @Get('user/:userId')
-  async findOneById(@Query('userId') userId: string) {
+  async findOneById(@Param('userId') userId: string) {
     try {
       const user = await this._usersService.findOneById(userId);
       return {
