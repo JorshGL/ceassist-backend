@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Monitoria } from 'src/entities/monitoria.entity';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { CreateMonitoriaDTO } from './dto/create-monitoria.dto';
 import { monitoriaRoles } from 'src/types';
 
@@ -33,6 +33,27 @@ export class MonitoriasService {
         { user: { id: instructorId }, role: monitoriaRoles.monitor },
         { user: { id: studentId }, role: monitoriaRoles.student },
       ],
+    });
+  }
+
+  async findAllByStudentId(studentId: string): Promise<Monitoria[]> {
+    const monitorias = await this._monitoriasRepository.find({
+      select: {
+        id: true,
+      },
+      where: {
+        monitoriaToUsers: {
+          user: { firebaseUid: studentId },
+          role: monitoriaRoles.student,
+        },
+      },
+    });
+
+    return await this._monitoriasRepository.find({
+      relations: ['course', 'monitoriaToUsers', 'monitoriaToUsers.user'],
+      where: {
+        id: In(monitorias.map((monitoria) => monitoria.id)),
+      },
     });
   }
 }
