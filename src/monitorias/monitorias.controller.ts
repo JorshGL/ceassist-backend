@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Get, Req, UseGuards, Param } from '@nestjs/common';
 import { MonitoriasService } from './monitorias.service';
 import { CreateMonitoriaDTO } from './dto/create-monitoria.dto';
 import { ResponseDTO } from 'src/globals/dto/response.dto';
@@ -27,13 +27,12 @@ export class MonitoriasController {
     }
   }
 
-  @Get('findAllByStudentId')
-  @UseGuards(FirebaseAuthGuard)
-  async findAllByStudentId(@Req() request) {
+  @Get('findAllByStudentId/:userId')
+  // @UseGuards(FirebaseAuthGuard)
+  async findAllByStudentId(@Param('userId') userId) {
     try {
-      const { user_id } = request.user;
       const monitorias = await this._monitoriasService.findAllByStudentId(
-        user_id,
+        userId,
       );
       return {
         state: responseState.success,
