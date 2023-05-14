@@ -43,7 +43,7 @@ export class MonitoriasService {
       },
       where: {
         monitoriaToUsers: {
-          user: { firebaseUid: studentId },
+          user: { id: studentId },
           role: monitoriaRoles.student,
         },
       },
